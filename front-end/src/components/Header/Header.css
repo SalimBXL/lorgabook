@@ -34,3 +34,15 @@
     margin: 0;
     padding: 0;
 }
+
+
+@media screen and (max-width: 600px) {
+    .Header {
+      visibility: hidden;
+      clear: both;
+      float: left;
+      margin: 10px auto 5px 20px;
+      width: 28%;
+      display: none;
+    }
+  }

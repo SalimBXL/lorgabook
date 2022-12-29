@@ -1,27 +1,8 @@
-import React, { useEffect } from 'react';
-import { useLocation } from "react-router-dom";
-import { useState } from 'react';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
-import axios from 'axios';
 import { titleize } from '../../utils/text';
 
-function Article({article_path}) {
-  const [article, setArticle] = useState({});
-  const location = useLocation();
-  const articleId = location.pathname.split("/").at(-1);
-  
-  useEffect(() => {
-    let loading = true;
-    
-    axios
-      .get(article_path)
-      .then(response => response.data)
-      .then(item => loading && setArticle(item))
-      .catch(e => console.log("AXIOS ERROR : ", e));
-    return () => (loading = false)
-  }, [article_path]);
-
-
+function Article({article}) {
   let cardBorder = "secondary";
   if (!article.completed && !article.reviewed) cardBorder = "danger";
   if (!article.completed && article.reviewed) cardBorder = "warning";
