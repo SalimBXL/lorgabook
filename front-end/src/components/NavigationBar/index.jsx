@@ -18,6 +18,7 @@ function NavigationBar({notReviewed, notCompleted}) {
     categories: {label: "Categories", link: "#categories"},
     classes: {label: "Classes", link: "#Classes"},
     groupes: {label: "Groupes", link: "#Groupes"},
+    authors: {label: "Authors", link: "#authors"},
   };
 
   return (<div className='NavigationBar'>
@@ -50,6 +51,8 @@ function NavigationBar({notReviewed, notCompleted}) {
             <Nav.Link href={liens.classes.link}>{liens.classes.label}</Nav.Link>
 
             <Nav.Link href={liens.groupes.link}>{liens.groupes.label}</Nav.Link>
+
+            <Nav.Link href={liens.authors.link}>{liens.authors.label}</Nav.Link>
 
           </Nav>
           <SearchForm />
@@ -98,6 +101,8 @@ function NavigationBar({notReviewed, notCompleted}) {
             <Nav.Link href={liens.classes.link}>{liens.classes.label}</Nav.Link>
 
             <Nav.Link href={liens.groupes.link}>{liens.groupes.label}</Nav.Link>
+
+            <Nav.Link href={liens.authors.link}>{liens.authors.label}</Nav.Link>
 
           </Nav>
           <SearchForm />

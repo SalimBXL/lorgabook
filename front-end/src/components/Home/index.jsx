@@ -5,8 +5,14 @@ import ArticleList from "../ArticleList";
 import CategoryList from "../CategoryList";
 import ClasseList from "../ClasseList";
 import GroupeList from "../GroupeList";
-import { useFetchArticles, useFetchCategories, useFetchClasses, useFetchGroupes } from '../../utils/fetching'; 
 import Loading from '../Loading';
+import { 
+  useFetchArticles, 
+  useFetchAuthors, 
+  useFetchCategories, 
+  useFetchClasses, 
+  useFetchGroupes 
+} from '../../utils/fetching'; 
 import "./Home.css";
 
 
@@ -16,6 +22,7 @@ function Home() {
   const { classes, loadingClasses } = useFetchClasses();
   const { groupes, loadingGroupes } = useFetchGroupes();
   const { articles, loadingArticles } = useFetchArticles();
+  const { authors, LoadingAuthors } =useFetchAuthors();
   
   return (<div className='Home'>
     <header>
@@ -23,7 +30,7 @@ function Home() {
       <NavigationBar notReviewed={articles.notReviewed} notCompleted={articles.notCompleted} />
     </header>
 
-    <main>
+    <main className='Home-main'>
       <div className='Home-badges'>
         <div>
           { loadingCategories 
@@ -50,7 +57,7 @@ function Home() {
       <div>
         { loadingArticles 
           ? <Loading subject="articles" />
-          : <ArticleList articles={articles.articles} />
+          : <ArticleList articles={articles.articles} authors={authors}/>
         }
       </div>
       

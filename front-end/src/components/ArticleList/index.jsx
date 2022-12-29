@@ -2,28 +2,34 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
 import Accordion from 'react-bootstrap/Accordion';
-import { titleize } from '../../utils/text';
+import { titleize, mergeNamesOfAuthor } from '../../utils/text';
 import { dateYMDFormated } from '../../utils/date';
 import { addDir } from '../../utils/url';
 import "./ArticleList.css";
 
 
-function VignetteHeader({article, comments}) {
+function VignetteHeader({article, comments, reviewStatus, cardBorder, author}) {
   return (
     <Accordion.Header>
       <div className="ArticleItemList">
         <div className="ArticleItemList-title">
-          [title]{titleize(article.title)}
+          {titleize(article.title)}
           {(comments.length > 0) && <Badge bg="dark" pill>{comments.length}</Badge>}
         </div>
         <div className='ArticleItemList-subtitle'>          
-          ({dateYMDFormated(article.created_at)} by [author]{article.author})
+          ({dateYMDFormated(article.created_at)} by {mergeNamesOfAuthor(author)})
         </div>
         <div className='ArticleItemList-footer'>
           <div>
             Classe: {article.classe ? article.classe : "-"} &nbsp; 
             Groupe: {article.groupe ? article.groupe : "-"} &nbsp;
-            Category : {article.category ? article.category : "-"}
+            Category : {article.category ? article.category : "-"} &nbsp;
+            {reviewStatus !== 2 && 
+              <Badge bg={cardBorder}>
+                {reviewStatus === 0 && `Not yet reviewed`}
+                {reviewStatus === 1 && `Not yet completed`}
+              </Badge>
+            }
           </div>
         </div>
       </div>
@@ -58,18 +64,32 @@ function VignetteBody({article, comments}) {
   );
 }
 
-function Vignette({article, comments}) {
+function Vignette({article, comments, reviewStatus, cardBorder, author}) {
   return (<>
-    <VignetteHeader article={article} comments={comments} />
-    <VignetteBody article={article} comments={comments}/>
+    <VignetteHeader 
+      article={article} 
+      comments={comments} 
+      reviewStatus={reviewStatus} 
+      cardBorder={cardBorder}
+      author={author}
+    />
+    <VignetteBody 
+      article={article} 
+      comments={comments}
+    />
   </>);
 }
 
-function ArticleList({articles}) {
+function ArticleList({articles, authors}) {
   return (
     <Accordion className='ArticleList'>
       {articles.map(article => {
         const article_path = addDir("articles", article.id);
+        const reviewStatus = (article.reviewed !== true && article.completed !== true)
+          ? 0
+          : (article.reviewed === true && article.completed !== true)
+            ? 1
+            : 2;
         let cardBorder = (article.reviewed !== true && article.completed !== true)
           ? "danger"
           : (article.reviewed === true && article.completed !== true)
@@ -79,9 +99,16 @@ function ArticleList({articles}) {
           {id: 1, text: "Blabla", author: 2, date: "2022-12-23"},
           {id: 2, text: "Blabla222", author: 2, date: "2022-12-23"},
         ];
+        const author = authors.filter(author => author.id === article.author)[0];
         return (
           <Accordion.Item eventKey={article.id} key={article.id}  className='ArticleList-card'>
-            <Vignette article={article} comments={comments} />
+            <Vignette 
+              article={article} 
+              comments={comments} 
+              reviewStatus={reviewStatus} 
+              cardBorder={cardBorder}
+              author={author}
+            />
           </Accordion.Item>
         )})
       }

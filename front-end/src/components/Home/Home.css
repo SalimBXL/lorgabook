@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+.Home-main {
+    
+}
+
 .Home-badges {
     display: flex;
     flex-direction: row;

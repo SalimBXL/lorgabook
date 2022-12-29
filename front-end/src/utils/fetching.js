@@ -74,4 +74,19 @@ const useFetchGroupes = () => {
 }
 
 
-export { useFetchArticles, useFetchCategories, useFetchClasses, useFetchGroupes };
+const useFetchAuthors = () => {
+  const [authors, setAuthors] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(addDir(API_URL, "authors"))
+      .then(response => response.data)
+      .then(items => setAuthors(items));
+      setLoading(false);
+  }, []);
+  return { authors, loading };
+}
+
+
+export { useFetchArticles, useFetchCategories, useFetchClasses, useFetchGroupes, useFetchAuthors };
