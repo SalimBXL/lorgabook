@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
 import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
 import { titleize } from '../../utils/text';
 import { dateYMDFormated } from '../../utils/date';
 import { addDir } from '../../utils/url';

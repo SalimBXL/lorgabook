@@ -7,14 +7,22 @@ const API_URL = "http://localhost:3000/api/v1";
 
 
 const useFetchArticles = () => {
-  const [articles, setArticles] = useState([]);
+  const _articles = { notReviewed: 0, notCompleted: 0, articles: [] };
+  const [articles, setArticles] = useState(_articles);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
     axios
       .get(addDir(API_URL, "articles"))
       .then(response => response.data)
-      .then(items => setArticles(items));
+      .then(items => {
+        const _articles = {
+          notReviewed: items.not_reviewed,
+          notCompleted: items.not_completed,
+          articles: items.articles
+        };
+        return setArticles(_articles);
+      });
       setLoading(false);
   }, []);
   return { articles, loading };

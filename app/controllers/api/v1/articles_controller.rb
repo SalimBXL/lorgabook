@@ -3,9 +3,15 @@ class Api::V1::ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @articles = Article.all
+    @articles = Article.order(created_at: :desc)
+    @notReviewed = Article.where(reviewed: [false, nil]).size
+    @notCompleted = Article.where(completed: [false, nil]).length
 
-    render json: @articles
+    render json: {
+      not_reviewed: @notReviewed,
+      not_completed: @notCompleted,
+      articles: @articles
+    }
   end
 
   # GET /articles/1

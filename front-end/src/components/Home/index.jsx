@@ -20,7 +20,7 @@ function Home() {
   return (<div className='Home'>
     <header>
       <Header />
-      <NavigationBar notReviewed={2} notCompleted={1} />
+      <NavigationBar notReviewed={articles.notReviewed} notCompleted={articles.notCompleted} />
     </header>
 
     <main>
@@ -50,7 +50,7 @@ function Home() {
       <div>
         { loadingArticles 
           ? <Loading subject="articles" />
-          : <ArticleList articles={articles} />
+          : <ArticleList articles={articles.articles} />
         }
       </div>
       
