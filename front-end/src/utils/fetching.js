@@ -36,4 +36,34 @@ const useFetchCategories = () => {
 }
 
 
-export { useFetchArticles, useFetchCategories };
+const useFetchClasses = () => {
+  const [classes, setClasses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(addDir(API_URL, "classes"))
+      .then(response => response.data)
+      .then(items => setClasses(items));
+      setLoading(false);
+  }, []);
+  return { classes, loading };
+}
+
+
+const useFetchGroupes = () => {
+  const [groupes, setGroupes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(addDir(API_URL, "groupes"))
+      .then(response => response.data)
+      .then(items => setGroupes(items));
+      setLoading(false);
+  }, []);
+  return { groupes, loading };
+}
+
+
+export { useFetchArticles, useFetchCategories, useFetchClasses, useFetchGroupes };

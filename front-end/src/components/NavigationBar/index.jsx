@@ -7,7 +7,19 @@ import SearchForm from "../SearchForm";
 import logo from "./logo.png";
 import "./NavigationBar.css";
 
-function NavigationBar() {
+function NavigationBar({notReviewed, notCompleted}) {
+  const strNotReviewed = `Not Yet Reviewed ${notReviewed > 0 && `(${notReviewed})`}`;
+  const strNotCompleted = `Not Completed ${notCompleted > 0 && `(${notCompleted})`}`;
+
+  const liens = {
+    notYetReviewed: {label: strNotReviewed, link: "#notReviewed", },
+    notCompleted: {label: strNotCompleted, link: "#NotCompleted"},
+    fullyReviewed: {label: "Fully Reviewed", link: "#fully"},
+    categories: {label: "Categories", link: "#categories"},
+    classes: {label: "Classes", link: "#Classes"},
+    groupes: {label: "Groupes", link: "#Groupes"},
+  };
+
   return (<div className='NavigationBar'>
     <Navbar collapseOnSelect expand="md" bg="dark" variant="dark" id='largeNavBar'>
       <Container>
@@ -22,34 +34,22 @@ function NavigationBar() {
           <Nav>
 
             <NavDropdown title="Reviews" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">
-                Not Yet Reviewed
-              </NavDropdown.Item>
 
-              <NavDropdown.Item href="#action/3.2">
-                Not Completed
-              </NavDropdown.Item>
+              <NavDropdown.Item href={liens.notYetReviewed.link}>{liens.notYetReviewed.label}</NavDropdown.Item>
+
+              <NavDropdown.Item href={liens.notCompleted.link}>{liens.notCompleted.label}</NavDropdown.Item>
 
               <NavDropdown.Divider />
               
-              <NavDropdown.Item href="#action/3.4">
-                Fully Reviewed
-              </NavDropdown.Item>
+              <NavDropdown.Item href={liens.fullyReviewed.link}>{liens.fullyReviewed.label}</NavDropdown.Item>
               
             </NavDropdown>
             
-            <Nav.Link href="#deets">
-              [Categories]
-            </Nav.Link>
+            <Nav.Link href={liens.categories.link}>{liens.categories.label}</Nav.Link>
             
-            <Nav.Link href="#memes">
-              [Classes]  
-            </Nav.Link>
+            <Nav.Link href={liens.classes.link}>{liens.classes.label}</Nav.Link>
 
-            <Nav.Link href="#memes">
-              [Groupes]  
-            </Nav.Link>
-
+            <Nav.Link href={liens.groupes.link}>{liens.groupes.label}</Nav.Link>
 
           </Nav>
           <SearchForm />
@@ -82,32 +82,23 @@ function NavigationBar() {
             </Nav.Link>
 
             <NavDropdown title="Reviews" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">
-                Not Yet Reviewed
-              </NavDropdown.Item>
 
-              <NavDropdown.Item href="#action/3.2">
-                Not Completed
-              </NavDropdown.Item>
+              <NavDropdown.Item href={liens.notYetReviewed.link}>{liens.notYetReviewed.label}</NavDropdown.Item>
+
+              <NavDropdown.Item href={liens.notCompleted.link}>{liens.notCompleted.label}</NavDropdown.Item>
 
               <NavDropdown.Divider />
               
-              <NavDropdown.Item href="#action/3.4">
-                Fully Reviewed
-              </NavDropdown.Item>
+              <NavDropdown.Item href={liens.fullyReviewed.link}>{liens.fullyReviewed.label}</NavDropdown.Item>
+
             </NavDropdown>
 
-            <Nav.Link href="#deets">
-              [Categories]
-            </Nav.Link>
+            <Nav.Link href={liens.categories.link}>{liens.categories.label}</Nav.Link>
             
-            <Nav.Link href="#memes">
-              [Classes]  
-            </Nav.Link>
+            <Nav.Link href={liens.classes.link}>{liens.classes.label}</Nav.Link>
 
-            <Nav.Link href="#memes">
-              [Groupes]  
-            </Nav.Link>
+            <Nav.Link href={liens.groupes.link}>{liens.groupes.label}</Nav.Link>
+
           </Nav>
           <SearchForm />
         </Navbar.Collapse>

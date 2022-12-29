@@ -2,3 +2,12 @@
     margin: 0;
     padding: 0;
 }
+
+.Home-badges {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding-top: 8px;
+}
