@@ -1,13 +1,9 @@
-.Home {
+.Articles {
     margin: 0;
     padding: 0;
 }
 
-.Home-main {
-    
-}
-
-.Home-badges {
+.Articles-badges {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -18,7 +14,7 @@
 
 
 @media screen and (max-width: 600px) {
-    .Home-badges {
+    .Articles-badges {
         visibility: hidden;
         clear: both;
         float: left;

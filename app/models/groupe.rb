@@ -1,2 +1,3 @@
 class Groupe < ApplicationRecord
+    
 end

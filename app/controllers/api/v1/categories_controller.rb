@@ -4,8 +4,12 @@ class Api::V1::CategoriesController < ApplicationController
   # GET /categories
   def index
     @categories = Category.all
+    categories = Hash.new
+    @categories.each do |category|
+      categories[category.id] = category
+    end
 
-    render json: @categories
+    render json: categories
   end
 
   # GET /categories/1

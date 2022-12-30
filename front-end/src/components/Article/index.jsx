@@ -6,9 +6,6 @@ function Article({article}) {
   let cardBorder = "secondary";
   if (!article.completed && !article.reviewed) cardBorder = "danger";
   if (!article.completed && article.reviewed) cardBorder = "warning";
-
-  console.log("ARTICLE : ", article);
-
   return (
     <Card border={cardBorder} style={{ width: '18rem' }}>
       <Card.Header as="h5">{titleize(article.title)}</Card.Header>

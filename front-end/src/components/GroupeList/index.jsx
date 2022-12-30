@@ -5,7 +5,10 @@ import "./GroupeList.css";
 function GroupeList({groupes}) {
   return (
     <div className='GroupeList'>
-      {groupes.map(groupe => <Badge key={groupe.name} pill bg='secondary'>{groupe.name}</Badge>)}
+      {Object.keys(groupes).map(groupeKey => {
+        const {name} = groupes[groupeKey];
+        return <Badge key={name} pill bg='secondary'>{name}</Badge>
+      })}
     </div>
   )
 }

@@ -5,7 +5,10 @@ import "./CategoryList.css";
 function CategoryList({categories}) {
   return (
     <div className='CategoryList'>
-      {categories.map(category => <Badge key={category.name} pill bg='info'>{category.name}</Badge>)}
+      {Object.keys(categories).map(categoryKey => {
+        const {name} = categories[categoryKey];
+        return <Badge key={name} pill bg='info'>{name}</Badge>
+      })}
     </div>
   )
 }

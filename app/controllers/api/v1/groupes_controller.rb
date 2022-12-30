@@ -4,8 +4,11 @@ class Api::V1::GroupesController < ApplicationController
   # GET /groupes
   def index
     @groupes = Groupe.all
-
-    render json: @groupes
+    groupes = Hash.new
+    @groupes.each do |groupe|
+      groupes[groupe.id] = groupe
+    end
+    render json: groupes
   end
 
   # GET /groupes/1

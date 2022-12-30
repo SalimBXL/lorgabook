@@ -7,18 +7,16 @@ import SearchForm from "../SearchForm";
 import logo from "./logo.png";
 import "./NavigationBar.css";
 
-function NavigationBar({notReviewed, notCompleted}) {
-  const strNotReviewed = `Not Yet Reviewed ${notReviewed > 0 && `(${notReviewed})`}`;
-  const strNotCompleted = `Not Completed ${notCompleted > 0 && `(${notCompleted})`}`;
-
+function NavigationBar() {
   const liens = {
-    notYetReviewed: {label: strNotReviewed, link: "#notReviewed", },
-    notCompleted: {label: strNotCompleted, link: "#NotCompleted"},
-    fullyReviewed: {label: "Fully Reviewed", link: "#fully"},
-    categories: {label: "Categories", link: "#categories"},
-    classes: {label: "Classes", link: "#Classes"},
-    groupes: {label: "Groupes", link: "#Groupes"},
-    authors: {label: "Authors", link: "#authors"},
+    articles: {label: "Articles", link: "articles"},
+    notYetReviewed: {label: "Not Yet Reviewed", link: "notReviewed", },
+    notCompleted: {label: "Not Completed", link: "notCompleted"},
+    fullyReviewed: {label: "Fully Reviewed", link: "fully"},
+    categories: {label: "Categories", link: "categories"},
+    classes: {label: "Classes", link: "classes"},
+    groupes: {label: "Groupes", link: "groupes"},
+    authors: {label: "Authors", link: "authors"},
   };
 
   return (<div className='NavigationBar'>
@@ -34,7 +32,9 @@ function NavigationBar({notReviewed, notCompleted}) {
 
           <Nav>
 
-            <NavDropdown title="Reviews" id="collasible-nav-dropdown">
+            <Nav.Link href={liens.articles.link}>{liens.articles.label}</Nav.Link>
+
+            <NavDropdown title="Review" id="collasible-nav-dropdown">
 
               <NavDropdown.Item href={liens.notYetReviewed.link}>{liens.notYetReviewed.label}</NavDropdown.Item>
 
@@ -45,14 +45,18 @@ function NavigationBar({notReviewed, notCompleted}) {
               <NavDropdown.Item href={liens.fullyReviewed.link}>{liens.fullyReviewed.label}</NavDropdown.Item>
               
             </NavDropdown>
-            
-            <Nav.Link href={liens.categories.link}>{liens.categories.label}</Nav.Link>
-            
-            <Nav.Link href={liens.classes.link}>{liens.classes.label}</Nav.Link>
 
-            <Nav.Link href={liens.groupes.link}>{liens.groupes.label}</Nav.Link>
+            <NavDropdown title="Misc" id="collasible-nav-dropdown">
+            
+              <NavDropdown.Item href={liens.categories.link}>{liens.categories.label}</NavDropdown.Item>
+              
+              <NavDropdown.Item href={liens.classes.link}>{liens.classes.label}</NavDropdown.Item>
 
-            <Nav.Link href={liens.authors.link}>{liens.authors.label}</Nav.Link>
+              <NavDropdown.Item href={liens.groupes.link}>{liens.groupes.label}</NavDropdown.Item>
+
+              <NavDropdown.Item href={liens.authors.link}>{liens.authors.label}</NavDropdown.Item>
+            
+            </NavDropdown>
 
           </Nav>
           <SearchForm />
@@ -80,9 +84,9 @@ function NavigationBar({notReviewed, notCompleted}) {
             
           <Nav>
 
-          <Nav.Link>
-              
-            </Nav.Link>
+            <Nav.Link></Nav.Link>
+
+            <Nav.Link href={liens.articles.link}>{liens.articles.label}</Nav.Link>
 
             <NavDropdown title="Reviews" id="collasible-nav-dropdown">
 
@@ -96,13 +100,17 @@ function NavigationBar({notReviewed, notCompleted}) {
 
             </NavDropdown>
 
-            <Nav.Link href={liens.categories.link}>{liens.categories.label}</Nav.Link>
+            <NavDropdown title="Misc" id="collasible-nav-dropdown">
             
-            <Nav.Link href={liens.classes.link}>{liens.classes.label}</Nav.Link>
+              <NavDropdown.Item href={liens.categories.link}>{liens.categories.label}</NavDropdown.Item>
+              
+              <NavDropdown.Item href={liens.classes.link}>{liens.classes.label}</NavDropdown.Item>
 
-            <Nav.Link href={liens.groupes.link}>{liens.groupes.label}</Nav.Link>
+              <NavDropdown.Item href={liens.groupes.link}>{liens.groupes.label}</NavDropdown.Item>
 
-            <Nav.Link href={liens.authors.link}>{liens.authors.label}</Nav.Link>
+              <NavDropdown.Item href={liens.authors.link}>{liens.authors.label}</NavDropdown.Item>
+            
+            </NavDropdown>
 
           </Nav>
           <SearchForm />

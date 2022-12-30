@@ -7,10 +7,19 @@ class Api::V1::ArticlesController < ApplicationController
     @notReviewed = Article.where(reviewed: [false, nil]).size
     @notCompleted = Article.where(completed: [false, nil]).length
 
+    articles = Array.new
+    @articles.each do |article|
+      comments = Comment.where(article: article.id).order(created_at: :desc)
+      articles << {
+        article: article,
+        comments: comments
+      }
+    end
+
     render json: {
       not_reviewed: @notReviewed,
       not_completed: @notCompleted,
-      articles: @articles
+      articles: articles
     }
   end
 

@@ -5,7 +5,13 @@ class Api::V1::AuthorsController < ApplicationController
   def index
     @authors = Author.all
 
-    render json: @authors
+    authors = Hash.new
+    @authors.each do |author|
+      authors[author.id] = author
+    end
+
+    render json: authors
+    
   end
 
   # GET /authors/1

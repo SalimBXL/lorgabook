@@ -4,8 +4,11 @@ class Api::V1::ClassesController < ApplicationController
   # GET /classes
   def index
     @classes = Classe.all
-
-    render json: @classes
+    classes = Hash.new
+    @classes.each do |classe|
+      classes[classe.id] = classe
+    end
+    render json: classes
   end
 
   # GET /classes/1

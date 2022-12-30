@@ -5,7 +5,10 @@ import "./ClasseList.css";
 function ClasseList({classes}) {
   return (
     <div className='ClasseList'>
-      {classes.map(classe => <Badge key={classe.name} pill bg='primary'>{classe.name}</Badge>)}
+      {Object.keys(classes).map(classeKey => {
+        const {name} = classes[classeKey];
+        return <Badge key={name} pill bg='primary'>{name}</Badge>
+      })}
     </div>
   )
 }

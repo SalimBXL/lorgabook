@@ -8,24 +8,27 @@ import { addDir } from '../../utils/url';
 import "./ArticleList.css";
 
 
-function VignetteHeader({article, comments, reviewStatus, cardBorder, author}) {
+function VignetteHeader({article, comments, reviewStatus, author, cardBorder, category, classe}) {
+  const {created_at, title} = article;
   return (
     <Accordion.Header>
+      <div className='ArticleList-card-pill'>
+        {reviewStatus !== 2 && <Badge pill bg={cardBorder}>!</Badge>}
+      </div>
       <div className="ArticleItemList">
         <div className="ArticleItemList-title">
-          {titleize(article.title)}
+          {titleize(title)}
           {(comments.length > 0) && <Badge bg="dark" pill>{comments.length}</Badge>}
         </div>
         <div className='ArticleItemList-subtitle'>          
-          ({dateYMDFormated(article.created_at)} by {mergeNamesOfAuthor(author)})
+          ({dateYMDFormated(created_at)} by {author})
         </div>
         <div className='ArticleItemList-footer'>
           <div>
-            Classe: {article.classe ? article.classe : "-"} &nbsp; 
-            Groupe: {article.groupe ? article.groupe : "-"} &nbsp;
-            Category : {article.category ? article.category : "-"} &nbsp;
+            <Badge pill bg="primary">{classe ? classe.name : "-"}</Badge> &nbsp; 
+            <Badge pill bg="info">{category ? category.name : "-"}</Badge> &nbsp;
             {reviewStatus !== 2 && 
-              <Badge bg={cardBorder}>
+              <Badge bg="light" text="dark">
                 {reviewStatus === 0 && `Not yet reviewed`}
                 {reviewStatus === 1 && `Not yet completed`}
               </Badge>
@@ -37,77 +40,85 @@ function VignetteHeader({article, comments, reviewStatus, cardBorder, author}) {
   );
 }
 
-function VignetteComments({comments}) {
+function VignetteComments({comments, authors}) {
   return (<div>
     <hr />
     <h5>Comments</h5>
-    {comments.map(comment => 
-      <div className='ArticleItemList-comments' key={comment.id}>
-        <div className="ArticleItemList-comments-authorDate">
-          <span className="ArticleItemList-comments-author">{comment.author}</span>
-          <span className="ArticleItemList-comments-date">{comment.date}</span>
+    {comments.map(comment => {
+      const {id, created_at, author, text} = comment;
+      const _author = mergeNamesOfAuthor(authors[author]);
+      const _date = dateYMDFormated(created_at);
+      return (
+        <div className='ArticleItemList-comments' key={id}>
+          <div className="ArticleItemList-comments-authorDate">
+            <span className="ArticleItemList-comments-author">{_author}</span>
+            <span className="ArticleItemList-comments-date">{_date}</span>
+          </div>
+          <div className='ArticleItemList-comments-text'>
+            {text}
+            <hr />
+          </div>
         </div>
-        <div>
-          {comment.text}
-        </div>
-      </div>
+      )}
     )}
   </div>);
 }
 
-function VignetteBody({article, comments}) {
+function VignetteBody({article, comments, authors}) {
   return (
     <Accordion.Body>
       {article.text}
-      {comments && <VignetteComments comments={comments} />}
+      {comments && <VignetteComments comments={comments} authors={authors} />}
     </Accordion.Body>
   );
 }
 
-function Vignette({article, comments, reviewStatus, cardBorder, author}) {
+function Vignette({article, comments, reviewStatus, authors, cardBorder, classe, category}) {
   return (<>
-    <VignetteHeader 
+    <VignetteHeader
       article={article} 
       comments={comments} 
       reviewStatus={reviewStatus} 
+      author={mergeNamesOfAuthor(authors[article.author])}
+      category={category}
+      classe={classe}
       cardBorder={cardBorder}
-      author={author}
     />
     <VignetteBody 
       article={article} 
       comments={comments}
+      authors={authors}
     />
   </>);
 }
 
-function ArticleList({articles, authors}) {
+function ArticleList({articles, authors, classes, categories}) {
   return (
     <Accordion className='ArticleList'>
-      {articles.map(article => {
-        const article_path = addDir("articles", article.id);
-        const reviewStatus = (article.reviewed !== true && article.completed !== true)
+      {articles.map(articleItems => {
+        const {article, comments} = articleItems;
+        const {id, reviewed, completed, classe, category} = article;
+        const article_path = addDir("articles", id);
+        const reviewStatus = (reviewed !== true && completed !== true)
           ? 0
-          : (article.reviewed === true && article.completed !== true)
+          : (reviewed === true && completed !== true)
             ? 1
             : 2;
-        let cardBorder = (article.reviewed !== true && article.completed !== true)
+        let cardBorder = (reviewed !== true && completed !== true)
           ? "danger"
-          : (article.reviewed === true && article.completed !== true)
+          : (reviewed === true && completed !== true)
             ? "warning"
             : "secondary";
-        const comments = [
-          {id: 1, text: "Blabla", author: 2, date: "2022-12-23"},
-          {id: 2, text: "Blabla222", author: 2, date: "2022-12-23"},
-        ];
-        const author = authors.filter(author => author.id === article.author)[0];
         return (
-          <Accordion.Item eventKey={article.id} key={article.id}  className='ArticleList-card'>
+          <Accordion.Item eventKey={id} key={id}  className='ArticleList-card' >
             <Vignette 
-              article={article} 
+              authors={authors}
+              classe={classes[classe]}
+              category={categories[category]}
+              article={article}
               comments={comments} 
               reviewStatus={reviewStatus} 
               cardBorder={cardBorder}
-              author={author}
             />
           </Accordion.Item>
         )})
