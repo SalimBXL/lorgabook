@@ -1,5 +1,11 @@
 .ArticleList {
-    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
 }
 
 .ArticleList-card {
@@ -12,82 +18,7 @@
     padding: 0px 0px;
 }
 
-.ArticleList-card-pill {
-    width: 48px;
-    margin: 0;
-    padding-right: 0px;
-    font-size: x-large;
-}
-
-.ArticleItemList {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 100%;
-}
-
-.ArticleItemList-title {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding-right: 32px;
-    font-weight: bold;
-    font-size: large;
-}
-
-.ArticleItemList-subtitle {
-    font-size: small;
-    font-style: italic;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-.ArticleItemList-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.ArticleItemList-link {
-    padding-bottom: 4px;
-}
-
-.ArticleItemList-comments {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    font-size: smaller;
-}
-
-.ArticleItemList-comments-text {
-    width: auto;
-}
-
-.ArticleItemList-comments-authorDate {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-right: 16px;
-}
-
-.ArticleItemList-comments-author {
-    font-weight: bold;
-    width: 100px;
-}
-
-.ArticleItemList-comments-date {
-    font-size: x-small;
-}
-
-a:link {
-    text-decoration: none;
+.ArticleList-accordion {
+    padding: 0px 0px;
+    margin: 0px 0px;
 }

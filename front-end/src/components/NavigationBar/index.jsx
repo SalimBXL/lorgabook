@@ -4,14 +4,15 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import SearchForm from "../SearchForm";
+import {titleize} from "../../utils/text";
 import logo from "./logo.png";
 import "./NavigationBar.css";
 
 function NavigationBar() {
   const liens = {
-    articles: {label: "Articles", link: "articles"},
-    notYetReviewed: {label: "Not Yet Reviewed", link: "notReviewed", },
-    notCompleted: {label: "Not Completed", link: "notCompleted"},
+    articles: {label: "articles", link: "articles"},
+    notYetReviewed: {label: "not Yet Reviewed", link: "notReviewed", },
+    notCompleted: {label: "Not completed", link: "notCompleted"},
     fullyReviewed: {label: "Fully Reviewed", link: "fully"},
     categories: {label: "Categories", link: "categories"},
     classes: {label: "Classes", link: "classes"},
@@ -22,39 +23,40 @@ function NavigationBar() {
   return (<div className='NavigationBar'>
     <Navbar collapseOnSelect expand="md" bg="dark" variant="dark" id='largeNavBar'>
       <Container>
-        <Navbar.Brand href="/">
-          Home
-        </Navbar.Brand>
+
+        <Navbar.Brand href="/">[{titleize("Home")}]</Navbar.Brand>
+
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-          </Nav>
+
+          <Nav className="me-auto"></Nav>
 
           <Nav>
 
-            <Nav.Link href={liens.articles.link}>{liens.articles.label}</Nav.Link>
+            <Nav.Link href={liens.articles.link}>[{titleize(liens.articles.label)}]</Nav.Link>
 
-            <NavDropdown title="Review" id="collasible-nav-dropdown">
+            <NavDropdown title={`[${titleize("Review")}]`} id="collasible-nav-dropdown">
 
-              <NavDropdown.Item href={liens.notYetReviewed.link}>{liens.notYetReviewed.label}</NavDropdown.Item>
+              <NavDropdown.Item href={liens.notYetReviewed.link}>{titleize(liens.notYetReviewed.label)}</NavDropdown.Item>
 
-              <NavDropdown.Item href={liens.notCompleted.link}>{liens.notCompleted.label}</NavDropdown.Item>
+              <NavDropdown.Item href={liens.notCompleted.link}>{titleize(liens.notCompleted.label)}</NavDropdown.Item>
 
               <NavDropdown.Divider />
               
-              <NavDropdown.Item href={liens.fullyReviewed.link}>{liens.fullyReviewed.label}</NavDropdown.Item>
+              <NavDropdown.Item href={liens.fullyReviewed.link}>{titleize(liens.fullyReviewed.label)}</NavDropdown.Item>
               
             </NavDropdown>
 
-            <NavDropdown title="Misc" id="collasible-nav-dropdown">
+            <NavDropdown title={`[${titleize("Misc")}]`} id="collasible-nav-dropdown">
             
-              <NavDropdown.Item href={liens.categories.link}>{liens.categories.label}</NavDropdown.Item>
+              <NavDropdown.Item href={liens.categories.link}>{titleize(liens.categories.label)}</NavDropdown.Item>
               
-              <NavDropdown.Item href={liens.classes.link}>{liens.classes.label}</NavDropdown.Item>
+              <NavDropdown.Item href={liens.classes.link}>{titleize(liens.classes.label)}</NavDropdown.Item>
 
-              <NavDropdown.Item href={liens.groupes.link}>{liens.groupes.label}</NavDropdown.Item>
+              <NavDropdown.Item href={liens.groupes.link}>{titleize(liens.groupes.label)}</NavDropdown.Item>
 
-              <NavDropdown.Item href={liens.authors.link}>{liens.authors.label}</NavDropdown.Item>
+              <NavDropdown.Item href={liens.authors.link}>{titleize(liens.authors.label)}</NavDropdown.Item>
             
             </NavDropdown>
 
@@ -86,29 +88,29 @@ function NavigationBar() {
 
             <Nav.Link></Nav.Link>
 
-            <Nav.Link href={liens.articles.link}>{liens.articles.label}</Nav.Link>
+            <Nav.Link href={liens.articles.link}>[{titleize(liens.articles.label)}]</Nav.Link>
 
-            <NavDropdown title="Reviews" id="collasible-nav-dropdown">
+            <NavDropdown title={`[${titleize("Review")}]`} id="collasible-nav-dropdown">
 
-              <NavDropdown.Item href={liens.notYetReviewed.link}>{liens.notYetReviewed.label}</NavDropdown.Item>
+              <NavDropdown.Item href={liens.notYetReviewed.link}>{titleize(liens.notYetReviewed.label)}</NavDropdown.Item>
 
-              <NavDropdown.Item href={liens.notCompleted.link}>{liens.notCompleted.label}</NavDropdown.Item>
+              <NavDropdown.Item href={liens.notCompleted.link}>{titleize(liens.notCompleted.label)}</NavDropdown.Item>
 
               <NavDropdown.Divider />
               
-              <NavDropdown.Item href={liens.fullyReviewed.link}>{liens.fullyReviewed.label}</NavDropdown.Item>
-
+              <NavDropdown.Item href={liens.fullyReviewed.link}>{titleize(liens.fullyReviewed.label)}</NavDropdown.Item>
+              
             </NavDropdown>
 
-            <NavDropdown title="Misc" id="collasible-nav-dropdown">
+            <NavDropdown title={`[${titleize("Misc")}]`} id="collasible-nav-dropdown">
             
-              <NavDropdown.Item href={liens.categories.link}>{liens.categories.label}</NavDropdown.Item>
+              <NavDropdown.Item href={liens.categories.link}>{titleize(liens.categories.label)}</NavDropdown.Item>
               
-              <NavDropdown.Item href={liens.classes.link}>{liens.classes.label}</NavDropdown.Item>
+              <NavDropdown.Item href={liens.classes.link}>{titleize(liens.classes.label)}</NavDropdown.Item>
 
-              <NavDropdown.Item href={liens.groupes.link}>{liens.groupes.label}</NavDropdown.Item>
+              <NavDropdown.Item href={liens.groupes.link}>{titleize(liens.groupes.label)}</NavDropdown.Item>
 
-              <NavDropdown.Item href={liens.authors.link}>{liens.authors.label}</NavDropdown.Item>
+              <NavDropdown.Item href={liens.authors.link}>{titleize(liens.authors.label)}</NavDropdown.Item>
             
             </NavDropdown>
 

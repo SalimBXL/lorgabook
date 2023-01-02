@@ -2,12 +2,12 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import "./Categories.css";
+import "./Groupes.css";
 
-function Categories({categories}) {
+function Groupes({groupes}) {
   return (
-    <div className='Categories'>
-      <h2>Categories</h2>
+    <div className='Groupes'>
+      <h2>Groupes</h2>
 
       <Table responsive>
         <thead>
@@ -20,11 +20,11 @@ function Categories({categories}) {
         </thead>
         <tbody>
           {
-            Object.values(categories).map(category => {   
-              return <tr key={category.id}>
-                <td>{category.id}</td>
-                <td>{category.name}</td>
-                <td>{category.description}</td>
+            Object.values(groupes).map(groupe => {   
+              return <tr key={groupe.id}>
+                <td>{groupe.id}</td>
+                <td>{groupe.name}</td>
+                <td>{groupe.description}</td>
                 <td>
                   <ButtonGroup size="sm">
                     <Button>Edit</Button>
@@ -40,4 +40,4 @@ function Categories({categories}) {
   )
 }
 
-export default Categories;
+export default Groupes;

@@ -6,6 +6,8 @@ class Api::V1::ArticlesController < ApplicationController
     @articles = Article.order(created_at: :desc)
     @notReviewed = Article.where(reviewed: [false, nil]).size
     @notCompleted = Article.where(completed: [false, nil]).length
+    @fully_reviewed = Article.where(reviewed: true, completed: true).size
+    @total = Article.all.size
 
     articles = Array.new
     @articles.each do |article|
@@ -19,6 +21,8 @@ class Api::V1::ArticlesController < ApplicationController
     render json: {
       not_reviewed: @notReviewed,
       not_completed: @notCompleted,
+      fully_reviewed: @fully_reviewed,
+      articles_total: @total,
       articles: articles
     }
   end

@@ -2,38 +2,39 @@ import React from 'react';
 import ArticleList from "../ArticleList";
 import CategoryList from "../CategoryList";
 import ClasseList from "../ClasseList";
-import Loading from '../Loading';
-import { 
-  useFetchArticles, 
-  useFetchAuthors, 
-  useFetchCategories, 
-  useFetchClasses, 
-  useFetchGroupes 
-} from '../../utils/fetching';
+import PaginationArticles from './PaginationArticles';
+import Badge from 'react-bootstrap/Badge';
 import "./Articles.css";
 
-function Articles() {
-  const { categories, loadingCategories } = useFetchCategories();
-  const { classes, loadingClasses } = useFetchClasses();
-  const { groupes, loadingGroupes } = useFetchGroupes();
-  const { articles, loadingArticles } = useFetchArticles();
-  const { authors, loadingAuthors } =useFetchAuthors();
+function Articles({articles, authors, categories, classes}) {
+  const {notReviewed, notCompleted} = articles;
+
+
   return (<div className='Articles'>
-    {loadingCategories && <Loading subject="catagories" />}
-      {loadingClasses && <Loading subject="classes" />}
-      {loadingGroupes && <Loading subject="groupes" />}
-      {loadingAuthors && <Loading subject="authors" />}
-      {loadingArticles && <Loading subject="articles" />}
     <div className='Articles-badges'>
       <CategoryList categories={categories} />
       <ClasseList classes={classes} />
     </div>
+
+    <div className='Articles-middlebar'>
+      <PaginationArticles total={null} />
+
+      <Badge bg="light" text="dark" className='Articles-revs'>
+        Reviews: &nbsp;
+        {notReviewed && <Badge bg="danger">{notReviewed}</Badge>}&nbsp;
+        {notCompleted && <Badge bg="warning" text="dark">{notCompleted}</Badge>}
+      </Badge>
+    </div>
+
     <ArticleList 
       articles={articles.articles} 
       authors={authors}
       categories={categories}
       classes={classes}
     />
+
+    <PaginationArticles />
+    
   </div>)
 }
 

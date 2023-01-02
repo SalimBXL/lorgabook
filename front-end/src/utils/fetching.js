@@ -19,6 +19,8 @@ const useFetchArticles = () => {
         const _articles = {
           notReviewed: items.not_reviewed,
           notCompleted: items.not_completed,
+          fullyReviewed: items.fully_reviewed,
+          totalArticles: items.articles_total,
           articles: items.articles
         };
         return setArticles(_articles);
