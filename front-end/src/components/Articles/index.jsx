@@ -11,15 +11,21 @@ function Articles({articles, authors, categories, classes}) {
 
 
   return (<div className='Articles'>
-    <div className='Articles-badges'>
-      <CategoryList categories={categories} />
-      <ClasseList classes={classes} />
+    <div className='Articles-topbar'>
+      <div className='Articles-badges'>
+        <CategoryList categories={categories} />
+        <ClasseList classes={classes} />
+      </div>
+      <Badge bg="light" text="dark" className='Articles-revs'>
+        Reviews: &nbsp;
+        {notReviewed && <Badge bg="danger">{notReviewed}</Badge>}&nbsp;
+        {notCompleted && <Badge bg="warning" text="dark">{notCompleted}</Badge>}
+      </Badge>
     </div>
 
     <div className='Articles-middlebar'>
-      <PaginationArticles total={null} />
-
-      <Badge bg="light" text="dark" className='Articles-revs'>
+      <PaginationArticles  />
+      <Badge bg="light" text="dark" className='Articles-revs revs-middlebar'>
         Reviews: &nbsp;
         {notReviewed && <Badge bg="danger">{notReviewed}</Badge>}&nbsp;
         {notCompleted && <Badge bg="warning" text="dark">{notCompleted}</Badge>}

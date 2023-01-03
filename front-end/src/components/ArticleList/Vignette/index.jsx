@@ -2,7 +2,7 @@ import React from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import Badge from 'react-bootstrap/Badge';
 import { titleize, mergeNamesOfAuthor } from '../../../utils/text';
-import { dateYMDFormated } from '../../../utils/date';
+import { dateYMDFormated, dateTimeFormated } from '../../../utils/date';
 import "./Vignette.css";
 
 function VignetteHeader({article, comments, reviewStatus, author, cardBorder, category, classe}) {
@@ -62,9 +62,12 @@ function VignetteHeader({article, comments, reviewStatus, author, cardBorder, ca
   }
   
   function VignetteBody({article, comments, authors}) {
+    const {text, updated_at} = article;
+    const updatedAt = dateTimeFormated(updated_at);
     return (
       <Accordion.Body>
-        {article.text}
+        <p className="VignetteBody">{text}</p>
+        <p className="VignetteFooter">(Last modification : {updatedAt})</p>
         {comments && <VignetteComments comments={comments} authors={authors} />}
       </Accordion.Body>
     );

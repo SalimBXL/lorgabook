@@ -1,4 +1,3 @@
-import React from "react";
 
 const addBackSlash = (url = "http://") => url.toString().trim().substring(-1) !== "/" ? url + "/" : url;
 

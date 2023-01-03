@@ -1,4 +1,3 @@
-import React from "react";
 
 const titleize = (str = "") => str
     .split(" ")
