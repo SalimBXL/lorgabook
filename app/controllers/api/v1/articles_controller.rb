@@ -8,6 +8,7 @@ class Api::V1::ArticlesController < ApplicationController
     @notCompleted = Article.where(completed: [false, nil]).length
     @fully_reviewed = Article.where(reviewed: true, completed: true).size
     @total = Article.all.size
+    @lasts = Article.last(5)
 
     articles = Array.new
     @articles.each do |article|
@@ -23,6 +24,7 @@ class Api::V1::ArticlesController < ApplicationController
       not_completed: @notCompleted,
       fully_reviewed: @fully_reviewed,
       articles_total: @total,
+      lasts: @lasts,
       articles: articles
     }
   end

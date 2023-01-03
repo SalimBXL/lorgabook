@@ -3,33 +3,29 @@ import ArticleList from "../ArticleList";
 import CategoryList from "../CategoryList";
 import ClasseList from "../ClasseList";
 import PaginationArticles from './PaginationArticles';
-import Badge from 'react-bootstrap/Badge';
+import ReviewsResume from '../ReviewsResume';
 import "./Articles.css";
+
+
 
 function Articles({articles, authors, categories, classes}) {
   const {notReviewed, notCompleted} = articles;
-
-
   return (<div className='Articles'>
     <div className='Articles-topbar'>
       <div className='Articles-badges'>
         <CategoryList categories={categories} />
         <ClasseList classes={classes} />
       </div>
-      <Badge bg="light" text="dark" className='Articles-revs'>
-        Reviews: &nbsp;
-        {notReviewed && <Badge bg="danger">{notReviewed}</Badge>}&nbsp;
-        {notCompleted && <Badge bg="warning" text="dark">{notCompleted}</Badge>}
-      </Badge>
+      <div className=''>
+        <ReviewsResume notReviewed={notReviewed} notCompleted={notCompleted} />
+      </div>
     </div>
 
     <div className='Articles-middlebar'>
       <PaginationArticles  />
-      <Badge bg="light" text="dark" className='Articles-revs revs-middlebar'>
-        Reviews: &nbsp;
-        {notReviewed && <Badge bg="danger">{notReviewed}</Badge>}&nbsp;
-        {notCompleted && <Badge bg="warning" text="dark">{notCompleted}</Badge>}
-      </Badge>
+      <div className='revs-middlebar'>
+        <ReviewsResume notReviewed={notReviewed} notCompleted={notCompleted} />
+      </div>
     </div>
 
     <ArticleList 

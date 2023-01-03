@@ -16,6 +16,18 @@
     padding-top: 8px;
 }
 
+.Home-Card {
+    margin-top: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Home-Card-Body {
+    display: flex;
+    flex-flow: row no-wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
 
 @media screen and (max-width: 600px) {
     .Home-badges {

@@ -10,7 +10,13 @@ import Authors from "./components/Authors";
 const routes = ({categories, classes, groupes, authors, articles}) => [
     { 
         path: "/", 
-        element: <Home />, 
+        element: <Home 
+            lastArticles={articles.lastArticles}
+            articlesNotReviewed={articles.notReviewed}
+            articlesNotCompleted={articles.notCompleted}
+            totalArticles={articles.totalArticles}
+            fullyReviewed={articles.fullyReviewed}
+        />, 
         errorElement: <ErrorPage />, 
         children: [],
     },

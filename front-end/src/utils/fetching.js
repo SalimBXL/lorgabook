@@ -21,7 +21,8 @@ const useFetchArticles = () => {
           notCompleted: items.not_completed,
           fullyReviewed: items.fully_reviewed,
           totalArticles: items.articles_total,
-          articles: items.articles
+          lastArticles: items.lasts,
+          articles: items.articles,
         };
         return setArticles(_articles);
       });

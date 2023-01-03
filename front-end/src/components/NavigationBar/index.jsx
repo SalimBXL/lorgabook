@@ -58,14 +58,15 @@ function NavigationBar() {
       : iconText;
   }
 
-  return (<div className='NavigationBar'>
+  return (<div>
     <Navbar 
+      className='NavigationBar'
       collapseOnSelect 
       expand="md" 
       bg="dark" 
       variant="dark" 
       id='largeNavBar'
-      style={{padding: 0, margin: 0, width: "100%"}}
+      style={{padding: 0, margin: 0}}
     >
       <Container>
 
