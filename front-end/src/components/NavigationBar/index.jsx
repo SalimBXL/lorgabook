@@ -120,64 +120,6 @@ function NavigationBar() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-
-    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark" id='smallNavBar'>
-      <Container>
-        <Navbar.Brand href="/">
-          <img
-            alt=""
-            src={logo}
-            width="30"
-            height="30"
-            className="d-inline-block align-top"
-          />{' '}
-          &nbsp; LorgaBook
-        </Navbar.Brand>
-        
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-  
-          <Nav>
-
-            <Nav.Link></Nav.Link>
-
-            <Nav.Link href={liens.articles.link}>{menuItem({item: liens.articles})}</Nav.Link>
-
-            <NavDropdown 
-              title={menuItem({item: liens.reviews})} 
-              id="collasible-nav-dropdown"
-            >
-
-              <NavDropdown.Item href={liens.notYetReviewed.link}>{titleize(liens.notYetReviewed.label)}</NavDropdown.Item>
-
-              <NavDropdown.Item href={liens.notCompleted.link}>{titleize(liens.notCompleted.label)}</NavDropdown.Item>
-
-              <NavDropdown.Divider />
-              
-              <NavDropdown.Item href={liens.fullyReviewed.link}>{titleize(liens.fullyReviewed.label)}</NavDropdown.Item>
-              
-            </NavDropdown>
-
-            <NavDropdown 
-              title={menuItem({item: liens.misc})} 
-              id="collasible-nav-dropdown"
-            >
-            
-              <NavDropdown.Item href={liens.categories.link}>{menuItem({item: liens.categories})}</NavDropdown.Item>
-              
-              <NavDropdown.Item href={liens.classes.link}>{menuItem({item: liens.classes})}</NavDropdown.Item>
-
-              <NavDropdown.Item href={liens.groupes.link}>{menuItem({item: liens.groupes})}</NavDropdown.Item>
-
-              <NavDropdown.Item href={liens.authors.link}>{menuItem({item: liens.authors})}</NavDropdown.Item>
-            
-            </NavDropdown>
-
-          </Nav>
-          <SearchForm />
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
   </div>)
 }
 

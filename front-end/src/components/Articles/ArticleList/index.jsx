@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Vignette from "./Vignette";
 import Accordion from 'react-bootstrap/Accordion';
-import { addDir } from '../../utils/url';
+import { addDir } from '../../../utils/url';
 import "./ArticleList.css";
 
 function ArticleList({articles, authors, classes, categories}) {
@@ -24,7 +23,7 @@ function ArticleList({articles, authors, classes, categories}) {
             ? "warning"
             : "secondary";
         return (
-          <Accordion.Item eventKey={id} key={id}  className='ArticleList-card' >
+          <Accordion.Item eventKey={id} key={id}  className='ArticleList-card'>
             <Vignette 
               authors={authors}
               classe={classes[classe]}

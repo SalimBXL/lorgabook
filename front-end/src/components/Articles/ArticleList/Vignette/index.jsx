@@ -1,8 +1,8 @@
 import React from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import Badge from 'react-bootstrap/Badge';
-import { titleize, mergeNamesOfAuthor } from '../../../utils/text';
-import { dateYMDFormated, dateTimeFormated } from '../../../utils/date';
+import { titleize, mergeNamesOfAuthor } from '../../../../utils/text';
+import { dateYMDFormated, dateTimeFormated } from '../../../../utils/date';
 import "./Vignette.css";
 
 function VignetteHeader({article, comments, reviewStatus, author, cardBorder, category, classe}) {

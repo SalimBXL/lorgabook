@@ -3,14 +3,6 @@
     padding: 0;
 }
 
-.Articles-middlebar {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top: 16px;
-}
-
 .Articles-topbar {
     display: flex;
     flex-flow: row nowrap;
@@ -38,26 +30,3 @@
     padding-top: 8px;
 }
 
-
-@media screen and (max-width: 600px) {
-    .Articles-topbar {
-        visibility: hidden;
-        clear: both;
-        float: left;
-        margin: 10px auto 5px 20px;
-        width: 28%;
-        display: none;
-    }
-    .revs-middlebar {
-        visibility:visible;
-    }
-}
-
-@media screen and (min-width: 600px) {
-    .revs-middlebar {
-        visibility: hidden;
-    }
-    .Articles-middlebar {
-        justify-content: center;
-    }
-}

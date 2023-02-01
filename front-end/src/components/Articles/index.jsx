@@ -1,5 +1,5 @@
 import React from 'react';
-import ArticleList from "../ArticleList";
+import ArticleList from "./ArticleList";
 import CategoryList from "../CategoryList";
 import ClasseList from "../ClasseList";
 import PaginationArticles from './PaginationArticles';
@@ -21,12 +21,7 @@ function Articles({articles, authors, categories, classes}) {
       </div>
     </div>
 
-    <div className='Articles-middlebar'>
-      <PaginationArticles  />
-      <div className='revs-middlebar'>
-        <ReviewsResume notReviewed={notReviewed} notCompleted={notCompleted} />
-      </div>
-    </div>
+    <PaginationArticles  />
 
     <ArticleList 
       articles={articles.articles} 

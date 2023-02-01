@@ -57,6 +57,7 @@ function App() {
     </main>
 
     <footer>
+      (c)2023 by Salim A. Joly - PETScan ULB Erasme
     </footer>
 
 
